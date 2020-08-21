@@ -39,17 +39,19 @@ namespace OefeningBankApp
             {
                 if (item.RekNummer != mijnRekening.RekNummer) cbRekeningen.Items.Add(item.RekNummer);
             }
+            numBedrag.Maximum = 6000;
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (Convert.ToDouble(tbBedrag.Text) <= mijnRekening.Saldo || mijnRekening.TypeRekening == "Credit Rekening")
+            if (Convert.ToDouble(numBedrag.Value) <= mijnRekening.Saldo || mijnRekening.TypeRekening == "Credit Rekening")
             {
-                if (rekeningNummer != "" && Convert.ToDouble(tbBedrag.Text) > 0)
+                if (rekeningNummer != "" && Convert.ToDouble(numBedrag.Value) > 0)
                 {
                     DialogResult = DialogResult.OK;
                     if (!rbEigenRekening.Checked) rekeningNummer = tbAnderRekeningNummer.Text;
-                    bedrag = Convert.ToDouble(tbBedrag.Text);
+                    bedrag = Convert.ToDouble(numBedrag.Value);
                 }
                 else MessageBox.Show("Geef geldige waarden voor over te schrijven bedrag en rekeningnummer");
             }

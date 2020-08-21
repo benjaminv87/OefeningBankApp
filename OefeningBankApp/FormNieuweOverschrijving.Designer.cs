@@ -34,7 +34,8 @@
             this.tbAnderRekeningNummer = new System.Windows.Forms.MaskedTextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.tbBedrag = new System.Windows.Forms.MaskedTextBox();
+            this.numBedrag = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numBedrag)).BeginInit();
             this.SuspendLayout();
             // 
             // rbEigenRekening
@@ -88,6 +89,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(90, 105);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -95,20 +97,19 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // tbBedrag
+            // numBedrag
             // 
-            this.tbBedrag.Location = new System.Drawing.Point(65, 79);
-            this.tbBedrag.Mask = "0000000";
-            this.tbBedrag.Name = "tbBedrag";
-            this.tbBedrag.Size = new System.Drawing.Size(100, 20);
-            this.tbBedrag.TabIndex = 7;
+            this.numBedrag.Location = new System.Drawing.Point(65, 79);
+            this.numBedrag.Name = "numBedrag";
+            this.numBedrag.Size = new System.Drawing.Size(100, 20);
+            this.numBedrag.TabIndex = 7;
             // 
             // FormNieuweOverschrijving
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(170, 138);
-            this.Controls.Add(this.tbBedrag);
+            this.Controls.Add(this.numBedrag);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.tbAnderRekeningNummer);
@@ -119,6 +120,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormNieuweOverschrijving";
             this.Load += new System.EventHandler(this.FormNieuweOverschrijving_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numBedrag)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,6 +134,6 @@
         private System.Windows.Forms.MaskedTextBox tbAnderRekeningNummer;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.MaskedTextBox tbBedrag;
+        private System.Windows.Forms.NumericUpDown numBedrag;
     }
 }

@@ -18,7 +18,6 @@ namespace OefeningBankApp
         }
         List<Rekening> mijnRekeningen = new List<Rekening>();
 
-
         private void Form1_Load(object sender, EventArgs e)
         {
             Rekening nieuweRekening = new Debit(GenereerRekeningNummer(),10000) ;
@@ -29,12 +28,12 @@ namespace OefeningBankApp
         {
             if (lbMijnRekeningen.SelectedIndex > -1)
             {
-                btnOverschrijven.Enabled = true;
                 Rekening mijnRekening = (Rekening)lbMijnRekeningen.SelectedItem;
                 lblAccountType.Text = mijnRekening.TypeRekening;
                 lblSaldo.Text = Convert.ToString(mijnRekening.Saldo);
-
-                if (mijnRekening.TypeRekening.ToLower() == "spaar rekening") btnOverschrijven.Enabled = false;
+                btnVerwijderen.Visible = mijnRekening.Saldo == 0 ?true : false;
+                btnOverschrijven.Enabled =mijnRekening.TypeRekening.ToLower() == "spaar rekening"?false:true;
+                lbTransacties.DataSource = mijnRekening.transacties;
             }
         }
 
@@ -104,7 +103,13 @@ namespace OefeningBankApp
                                    andereRekening = item;
                                 } 
                             }
-                            andereRekening.Saldo += mijnRekening.overSchrijven(nieuweForm.bedrag);
+
+                        mijnRekening.overSchrijven(nieuweForm.bedrag);
+                        mijnRekening.voegTransactieToe(true,nieuweForm.bedrag, andereRekening.RekNummer);
+                        andereRekening.overSchrijven(nieuweForm.bedrag);
+                        andereRekening.voegTransactieToe(false, nieuweForm.bedrag, mijnRekening.RekNummer);
+                        lbTransacties.DataSource = null;
+                        lbTransacties.DataSource = mijnRekening.transacties;
                     }
                 }
             }
@@ -112,6 +117,13 @@ namespace OefeningBankApp
             lbMijnRekeningen.DataSource = null;
             lbMijnRekeningen.DataSource = mijnRekeningen;
 
+        }
+
+        private void btnVerwijderen_Click(object sender, EventArgs e)
+        {
+            mijnRekeningen.RemoveAt(lbMijnRekeningen.SelectedIndex);
+            lbMijnRekeningen.DataSource = null;
+            lbMijnRekeningen.DataSource = mijnRekeningen;
         }
     }
 }
