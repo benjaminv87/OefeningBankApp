@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbMijnRekeningen = new System.Windows.Forms.ListBox();
             this.btnMaakNieuweRekening = new System.Windows.Forms.Button();
             this.btnOverschrijven = new System.Windows.Forms.Button();
@@ -39,7 +40,9 @@
             this.btnVerwijderen = new System.Windows.Forms.Button();
             this.lbTransacties = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.epTextBox = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epTextBox)).BeginInit();
             this.SuspendLayout();
             // 
             // lbMijnRekeningen
@@ -47,7 +50,7 @@
             this.lbMijnRekeningen.FormattingEnabled = true;
             this.lbMijnRekeningen.Location = new System.Drawing.Point(12, 41);
             this.lbMijnRekeningen.Name = "lbMijnRekeningen";
-            this.lbMijnRekeningen.Size = new System.Drawing.Size(120, 95);
+            this.lbMijnRekeningen.Size = new System.Drawing.Size(172, 95);
             this.lbMijnRekeningen.TabIndex = 0;
             this.lbMijnRekeningen.SelectedIndexChanged += new System.EventHandler(this.lbMijnRekeningen_SelectedIndexChanged);
             // 
@@ -63,7 +66,7 @@
             // 
             // btnOverschrijven
             // 
-            this.btnOverschrijven.Location = new System.Drawing.Point(138, 41);
+            this.btnOverschrijven.Location = new System.Drawing.Point(190, 41);
             this.btnOverschrijven.Name = "btnOverschrijven";
             this.btnOverschrijven.Size = new System.Drawing.Size(82, 23);
             this.btnOverschrijven.TabIndex = 2;
@@ -79,7 +82,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 142);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(120, 79);
+            this.groupBox1.Size = new System.Drawing.Size(265, 79);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Account Gegevens";
@@ -87,42 +90,42 @@
             // lblSaldo
             // 
             this.lblSaldo.AutoSize = true;
-            this.lblSaldo.Location = new System.Drawing.Point(2, 55);
+            this.lblSaldo.Location = new System.Drawing.Point(83, 48);
             this.lblSaldo.Name = "lblSaldo";
-            this.lblSaldo.Size = new System.Drawing.Size(35, 13);
+            this.lblSaldo.Size = new System.Drawing.Size(0, 13);
             this.lblSaldo.TabIndex = 6;
-            this.lblSaldo.Text = "label3";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 42);
+            this.label2.Location = new System.Drawing.Point(43, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 13);
+            this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Saldo";
+            this.label2.Text = "Saldo :";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblAccountType
             // 
             this.lblAccountType.AutoSize = true;
-            this.lblAccountType.Location = new System.Drawing.Point(3, 29);
+            this.lblAccountType.Location = new System.Drawing.Point(83, 26);
             this.lblAccountType.Name = "lblAccountType";
-            this.lblAccountType.Size = new System.Drawing.Size(35, 13);
+            this.lblAccountType.Size = new System.Drawing.Size(0, 13);
             this.lblAccountType.TabIndex = 4;
-            this.lblAccountType.Text = "label2";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 16);
+            this.label1.Location = new System.Drawing.Point(3, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.Size = new System.Drawing.Size(80, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Account Type";
+            this.label1.Text = "Account Type :";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnVerwijderen
             // 
-            this.btnVerwijderen.Location = new System.Drawing.Point(138, 70);
+            this.btnVerwijderen.Location = new System.Drawing.Point(190, 70);
             this.btnVerwijderen.Name = "btnVerwijderen";
             this.btnVerwijderen.Size = new System.Drawing.Size(82, 23);
             this.btnVerwijderen.TabIndex = 7;
@@ -147,6 +150,10 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "TRANSACTIE GESCHIEDENIS";
             // 
+            // epTextBox
+            // 
+            this.epTextBox.ContainerControl = this;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,6 +171,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epTextBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,5 +190,6 @@
         private System.Windows.Forms.Button btnVerwijderen;
         private System.Windows.Forms.ListBox lbTransacties;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ErrorProvider epTextBox;
     }
 }

@@ -31,8 +31,8 @@ namespace OefeningBankApp
                 Rekening mijnRekening = (Rekening)lbMijnRekeningen.SelectedItem;
                 lblAccountType.Text = mijnRekening.TypeRekening;
                 lblSaldo.Text = Convert.ToString(mijnRekening.Saldo);
+                btnOverschrijven.Enabled = mijnRekening.Saldo == 0 && mijnRekening.TypeRekening.ToLower() != "credit rekening" ?  false :true ;
                 btnVerwijderen.Visible = mijnRekening.Saldo == 0 ?true : false;
-                btnOverschrijven.Enabled =mijnRekening.TypeRekening.ToLower() == "spaar rekening"?false:true;
                 lbTransacties.DataSource = mijnRekening.transacties;
             }
         }
@@ -87,14 +87,14 @@ namespace OefeningBankApp
 
         private void btnOverschrijven_Click(object sender, EventArgs e)
         {
-            if (lbMijnRekeningen.SelectedIndex > -1)
+             if (lbMijnRekeningen.SelectedIndex > -1)
             {
                 Rekening mijnRekening = (Rekening)lbMijnRekeningen.SelectedItem;
                 using (FormNieuweOverschrijving nieuweForm = new FormNieuweOverschrijving(mijnRekeningen,mijnRekening))
                 {
                     if (nieuweForm.ShowDialog() == DialogResult.OK)
                     {
-                        Rekening andereRekening = new Rekening("",0);
+                        Rekening andereRekening = new Rekening(nieuweForm.rekeningNummer,0);
 
                             foreach (var item in mijnRekeningen)
                             {
@@ -103,25 +103,35 @@ namespace OefeningBankApp
                                    andereRekening = item;
                                 } 
                             }
+                        DialogResult result = (MessageBox.Show($"Wil je {nieuweForm.bedrag} overschrijven naar {andereRekening.RekNummer}?", "Overschrijving uitvoeren", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning));
+                       if (result == DialogResult.OK)
+                        {
+                            mijnRekening.overSchrijven(-nieuweForm.bedrag);
+                            mijnRekening.voegTransactieToe(true, nieuweForm.bedrag, andereRekening.RekNummer);
+                            andereRekening.overSchrijven(nieuweForm.bedrag);
+                            andereRekening.voegTransactieToe(false, nieuweForm.bedrag, mijnRekening.RekNummer);
+                            lbTransacties.DataSource = null;
+                            lbTransacties.DataSource = mijnRekening.transacties;
+                        }
 
-                        mijnRekening.overSchrijven(nieuweForm.bedrag);
-                        mijnRekening.voegTransactieToe(true,nieuweForm.bedrag, andereRekening.RekNummer);
-                        andereRekening.overSchrijven(nieuweForm.bedrag);
-                        andereRekening.voegTransactieToe(false, nieuweForm.bedrag, mijnRekening.RekNummer);
-                        lbTransacties.DataSource = null;
-                        lbTransacties.DataSource = mijnRekening.transacties;
                     }
                 }
             }
-            else MessageBox.Show("Selecteer een rekening");
+            else epTextBox.SetError(lbMijnRekeningen, "Selecteer een rekeningnummer");
             lbMijnRekeningen.DataSource = null;
             lbMijnRekeningen.DataSource = mijnRekeningen;
-
+            
         }
 
         private void btnVerwijderen_Click(object sender, EventArgs e)
         {
-            mijnRekeningen.RemoveAt(lbMijnRekeningen.SelectedIndex);
+            DialogResult result = MessageBox.Show("Ben je zeker dat je wil verwijderen?","Verwijderen?", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                mijnRekeningen.RemoveAt(lbMijnRekeningen.SelectedIndex);
+                lbMijnRekeningen.DataSource = null;
+                lbMijnRekeningen.DataSource = mijnRekeningen;
+            }
             lbMijnRekeningen.DataSource = null;
             lbMijnRekeningen.DataSource = mijnRekeningen;
         }

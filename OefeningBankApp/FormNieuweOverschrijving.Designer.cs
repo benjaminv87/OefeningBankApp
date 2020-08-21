@@ -28,28 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rbEigenRekening = new System.Windows.Forms.RadioButton();
+            this.components = new System.ComponentModel.Container();
             this.cbRekeningen = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbAnderRekeningNummer = new System.Windows.Forms.MaskedTextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.numBedrag = new System.Windows.Forms.NumericUpDown();
+            this.epTextBox = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cbEigenRekening = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numBedrag)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epTextBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // rbEigenRekening
-            // 
-            this.rbEigenRekening.AutoCheck = false;
-            this.rbEigenRekening.AutoSize = true;
-            this.rbEigenRekening.Location = new System.Drawing.Point(12, 12);
-            this.rbEigenRekening.Name = "rbEigenRekening";
-            this.rbEigenRekening.Size = new System.Drawing.Size(126, 17);
-            this.rbEigenRekening.TabIndex = 0;
-            this.rbEigenRekening.TabStop = true;
-            this.rbEigenRekening.Text = "Naar eigen Rekening";
-            this.rbEigenRekening.UseVisualStyleBackColor = true;
-            this.rbEigenRekening.Click += new System.EventHandler(this.rbEigenRekening_Click);
             // 
             // cbRekeningen
             // 
@@ -76,6 +66,7 @@
             this.tbAnderRekeningNummer.Name = "tbAnderRekeningNummer";
             this.tbAnderRekeningNummer.Size = new System.Drawing.Size(153, 20);
             this.tbAnderRekeningNummer.TabIndex = 4;
+            this.tbAnderRekeningNummer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnOK
             // 
@@ -90,7 +81,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(90, 105);
+            this.btnCancel.Location = new System.Drawing.Point(127, 105);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 6;
@@ -101,39 +92,56 @@
             // 
             this.numBedrag.Location = new System.Drawing.Point(65, 79);
             this.numBedrag.Name = "numBedrag";
-            this.numBedrag.Size = new System.Drawing.Size(100, 20);
+            this.numBedrag.Size = new System.Drawing.Size(137, 20);
             this.numBedrag.TabIndex = 7;
+            this.numBedrag.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // epTextBox
+            // 
+            this.epTextBox.ContainerControl = this;
+            // 
+            // cbEigenRekening
+            // 
+            this.cbEigenRekening.AutoSize = true;
+            this.cbEigenRekening.Location = new System.Drawing.Point(12, 12);
+            this.cbEigenRekening.Name = "cbEigenRekening";
+            this.cbEigenRekening.Size = new System.Drawing.Size(190, 17);
+            this.cbEigenRekening.TabIndex = 8;
+            this.cbEigenRekening.Text = "Overschrijving naar eigen rekening";
+            this.cbEigenRekening.UseVisualStyleBackColor = true;
+            this.cbEigenRekening.CheckedChanged += new System.EventHandler(this.cbEigenRekening_CheckedChanged);
             // 
             // FormNieuweOverschrijving
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(170, 138);
+            this.ClientSize = new System.Drawing.Size(217, 138);
+            this.Controls.Add(this.cbEigenRekening);
             this.Controls.Add(this.numBedrag);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.tbAnderRekeningNummer);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbRekeningen);
-            this.Controls.Add(this.rbEigenRekening);
             this.Name = "FormNieuweOverschrijving";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormNieuweOverschrijving";
             this.Load += new System.EventHandler(this.FormNieuweOverschrijving_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numBedrag)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epTextBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.RadioButton rbEigenRekening;
         private System.Windows.Forms.ComboBox cbRekeningen;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox tbAnderRekeningNummer;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.NumericUpDown numBedrag;
+        private System.Windows.Forms.ErrorProvider epTextBox;
+        private System.Windows.Forms.CheckBox cbEigenRekening;
     }
 }

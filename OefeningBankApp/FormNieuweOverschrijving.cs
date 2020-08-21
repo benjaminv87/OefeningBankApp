@@ -39,21 +39,23 @@ namespace OefeningBankApp
             {
                 if (item.RekNummer != mijnRekening.RekNummer) cbRekeningen.Items.Add(item.RekNummer);
             }
-            numBedrag.Maximum = 6000;
+            numBedrag.Maximum = 100000;
 
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+ 
             if (Convert.ToDouble(numBedrag.Value) <= mijnRekening.Saldo || mijnRekening.TypeRekening == "Credit Rekening")
             {
                 if (rekeningNummer != "" && Convert.ToDouble(numBedrag.Value) > 0)
                 {
                     DialogResult = DialogResult.OK;
-                    if (!rbEigenRekening.Checked) rekeningNummer = tbAnderRekeningNummer.Text;
+                    if (!cbEigenRekening.Checked) rekeningNummer = tbAnderRekeningNummer.Text;
                     bedrag = Convert.ToDouble(numBedrag.Value);
                 }
-                else MessageBox.Show("Geef geldige waarden voor over te schrijven bedrag en rekeningnummer");
+                else if (numBedrag.Value == 0) epTextBox.SetError(btnOK, "Geef een bedrag groter dan 0");
+                else if (rekeningNummer == "") epTextBox.SetError(btnOK, "Geef een bedrag groter dan 0");
             }
             else
             {
@@ -61,19 +63,19 @@ namespace OefeningBankApp
             }
         }
 
-        private void rbEigenRekening_Click(object sender, EventArgs e)
+
+
+        private void cbEigenRekening_CheckedChanged(object sender, EventArgs e)
         {
-            if (!rbEigenRekening.Checked)
+            if (cbEigenRekening.Checked)
             {
                 tbAnderRekeningNummer.Visible = false;
                 cbRekeningen.Visible = true;
-                rbEigenRekening.Checked = true;
             }
             else
             {
                 tbAnderRekeningNummer.Visible = true;
                 cbRekeningen.Visible = false;
-                rbEigenRekening.Checked = false;
             }
         }
     }
