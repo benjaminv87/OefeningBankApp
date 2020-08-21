@@ -9,7 +9,7 @@ namespace OefeningBankApp
     class Debit : Rekening
     {
 
-        public Debit(string rekNummer,int saldo,string typeRekening):base(rekNummer, saldo)
+        public Debit(string rekNummer,double saldo):base(rekNummer, saldo)
         {
             TypeRekening = "Debit Rekening";
         }

@@ -10,7 +10,7 @@ namespace OefeningBankApp
     {
         public int CvcCode;
 
-        public Credit(string rekNummer, int saldo) : base(rekNummer, saldo)
+        public Credit(string rekNummer, double saldo) : base(rekNummer, saldo)
         {
             CvcCode = GenerateCVC();
             TypeRekening = "Credit Rekening";

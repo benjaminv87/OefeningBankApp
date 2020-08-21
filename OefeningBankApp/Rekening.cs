@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace OefeningBankApp
 {
-    class Rekening
+    public class Rekening
     {
         public string RekNummer;
-        public int Saldo;
+        public double Saldo;
         public string TypeRekening;
-        public Rekening(string rekNummer, int saldo)
+        public Rekening(string rekNummer, double saldo)
         {
             RekNummer = rekNummer;
             Saldo = saldo;
@@ -20,6 +20,12 @@ namespace OefeningBankApp
         public override string ToString()
         {
             return RekNummer;
+        }
+
+        public double overSchrijven(double bedrag)
+        {
+            Saldo -= bedrag;
+            return bedrag;
         }
     }
 }

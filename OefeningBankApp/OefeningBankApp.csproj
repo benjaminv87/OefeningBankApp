@@ -54,12 +54,30 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNieuweOverschrijving.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNieuweOverschrijving.Designer.cs">
+      <DependentUpon>FormNieuweOverschrijving.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormNieuweRekening.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNieuweRekening.Designer.cs">
+      <DependentUpon>FormNieuweRekening.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rekening.cs" />
     <Compile Include="Spaar.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNieuweOverschrijving.resx">
+      <DependentUpon>FormNieuweOverschrijving.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNieuweRekening.resx">
+      <DependentUpon>FormNieuweRekening.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

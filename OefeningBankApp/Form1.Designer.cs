@@ -56,6 +56,7 @@
             this.btnMaakNieuweRekening.TabIndex = 1;
             this.btnMaakNieuweRekening.Text = "Nieuwe rekening";
             this.btnMaakNieuweRekening.UseVisualStyleBackColor = true;
+            this.btnMaakNieuweRekening.Click += new System.EventHandler(this.btnMaakNieuweRekening_Click);
             // 
             // btnOverschrijven
             // 
@@ -65,6 +66,7 @@
             this.btnOverschrijven.TabIndex = 2;
             this.btnOverschrijven.Text = "Overschrijven";
             this.btnOverschrijven.UseVisualStyleBackColor = true;
+            this.btnOverschrijven.Click += new System.EventHandler(this.btnOverschrijven_Click);
             // 
             // groupBox1
             // 
@@ -91,7 +93,7 @@
             // lblAccountType
             // 
             this.lblAccountType.AutoSize = true;
-            this.lblAccountType.Location = new System.Drawing.Point(6, 29);
+            this.lblAccountType.Location = new System.Drawing.Point(3, 29);
             this.lblAccountType.Name = "lblAccountType";
             this.lblAccountType.Size = new System.Drawing.Size(35, 13);
             this.lblAccountType.TabIndex = 4;
@@ -100,7 +102,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 42);
+            this.label2.Location = new System.Drawing.Point(3, 42);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 5;
@@ -109,7 +111,7 @@
             // lblSaldo
             // 
             this.lblSaldo.AutoSize = true;
-            this.lblSaldo.Location = new System.Drawing.Point(6, 55);
+            this.lblSaldo.Location = new System.Drawing.Point(2, 55);
             this.lblSaldo.Name = "lblSaldo";
             this.lblSaldo.Size = new System.Drawing.Size(35, 13);
             this.lblSaldo.TabIndex = 6;

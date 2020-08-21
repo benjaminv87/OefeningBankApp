@@ -8,7 +8,7 @@ namespace OefeningBankApp
 {
     class Spaar :Rekening
     {
-        public Spaar(string rekNummer,int saldo) : base(rekNummer, saldo)
+        public Spaar(string rekNummer,double saldo) : base(rekNummer, saldo)
         {
             TypeRekening = "Spaar Rekening";
         }

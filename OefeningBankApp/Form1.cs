@@ -21,7 +21,7 @@ namespace OefeningBankApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Rekening nieuweRekening = new Credit(GenereerRekeningNummer(),10000) ;
+            Rekening nieuweRekening = new Debit(GenereerRekeningNummer(),10000) ;
             mijnRekeningen.Add(nieuweRekening);
             lbMijnRekeningen.DataSource = mijnRekeningen;
         }
@@ -29,9 +29,12 @@ namespace OefeningBankApp
         {
             if (lbMijnRekeningen.SelectedIndex > -1)
             {
+                btnOverschrijven.Enabled = true;
                 Rekening mijnRekening = (Rekening)lbMijnRekeningen.SelectedItem;
                 lblAccountType.Text = mijnRekening.TypeRekening;
                 lblSaldo.Text = Convert.ToString(mijnRekening.Saldo);
+
+                if (mijnRekening.TypeRekening.ToLower() == "spaar rekening") btnOverschrijven.Enabled = false;
             }
         }
 
@@ -51,6 +54,64 @@ namespace OefeningBankApp
 
 
             return rekNummer;
+        }
+
+        private void btnMaakNieuweRekening_Click(object sender, EventArgs e)
+        {
+            using(FormNieuweRekening nieuweForm = new FormNieuweRekening())
+            {
+                if (nieuweForm.ShowDialog() == DialogResult.OK)
+                {
+                    string typeRekening = nieuweForm.typeRekening;
+                    Rekening mijnRekening;
+                    switch (typeRekening)
+                    {
+                        case "Debit Rekening":
+                            mijnRekening = new Debit(GenereerRekeningNummer(),0) ;
+                            break;
+                        case "Spaar Rekening":
+                            mijnRekening = new Spaar(GenereerRekeningNummer(), 0);
+                            break;
+                        case "Credit Rekening":
+                            mijnRekening = new Credit(GenereerRekeningNummer(), 0);
+                            break;
+                        default:
+                            mijnRekening = new Rekening("ERROR",-1);
+                            break;
+                    }
+                    mijnRekeningen.Add(mijnRekening);
+                }
+                lbMijnRekeningen.DataSource = null;
+                lbMijnRekeningen.DataSource = mijnRekeningen;
+            }
+        }
+
+        private void btnOverschrijven_Click(object sender, EventArgs e)
+        {
+            if (lbMijnRekeningen.SelectedIndex > -1)
+            {
+                Rekening mijnRekening = (Rekening)lbMijnRekeningen.SelectedItem;
+                using (FormNieuweOverschrijving nieuweForm = new FormNieuweOverschrijving(mijnRekeningen,mijnRekening))
+                {
+                    if (nieuweForm.ShowDialog() == DialogResult.OK)
+                    {
+                        Rekening andereRekening = new Rekening("",0);
+
+                            foreach (var item in mijnRekeningen)
+                            {
+                                if(item.RekNummer == nieuweForm.rekeningNummer)
+                                {
+                                   andereRekening = item;
+                                } 
+                            }
+                            andereRekening.Saldo += mijnRekening.overSchrijven(nieuweForm.bedrag);
+                    }
+                }
+            }
+            else MessageBox.Show("Selecteer een rekening");
+            lbMijnRekeningen.DataSource = null;
+            lbMijnRekeningen.DataSource = mijnRekeningen;
+
         }
     }
 }
